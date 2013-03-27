@@ -22,6 +22,7 @@ app.use(express.compiler({ src : __dirname + '/public', enable: ['less']}));
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.set('view options', {pretty: true});
 });
 
 app.configure('production', function(){
@@ -42,6 +43,7 @@ express.compiler.compilers.less.compile = function(str, fn){
 // Routes
 
 app.get('/', routes.index);
+app.get('/test', routes.test);
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
