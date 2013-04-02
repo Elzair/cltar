@@ -10,4 +10,5 @@
     , "less": "*"
     , "jade": "*"
   }
+  , "readme": "\nCharlotte Animal Rights\n=======================\n\nThis repository features the working code for the Charlotte Animal Rights website."
 }

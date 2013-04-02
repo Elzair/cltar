@@ -62,3 +62,43 @@ body {
   border-right: 0;
   border-radius: 0 3px 3px 0;
 }
+.resize {
+  align: center
+  width: 500px;
+  height: 500px;
+  max-width: 500px;
+  max-height: 500px;
+}
+img.wide {
+  max-width: 500px;
+  max-height: 500px;
+  width: 500px;
+  height: auto;
+}
+img.tall {
+  max-height: 500px;
+  max-width: 500px;
+  height: 500px;
+  width: auto;
+}
+.head-text {
+  text-align: center;
+}
+.quote {
+  color: #808080;
+}
+.data-box {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
+  margin: 2em 0em 2em 0em;
+}
+.fixed-height-400 {
+  height: 400px;
+}
+.head-text {
+  line-height: normal;
+}
+.hidden {
+  visibility: none;
+}
