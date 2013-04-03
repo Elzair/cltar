@@ -4,9 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+  res.render('index', { title: 'Charlotte Animal Rights - Home' })
 };
 
-exports.test = function(req, res){
-  res.render('test', { title: 'Home' })
-};
