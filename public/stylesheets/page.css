@@ -1,67 +1,151 @@
+
+/* line 1 : /Users/elzairthesorcerer/Development/NodeJS/cltar/node_modules/stylus/lib/functions/index.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/node_modules\/stylus\/lib\/functions\/index\.styl}line{font-family:\000031}}
+
+/* line 1 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\000031}}
 body {
   padding-top: 20px;
   padding-bottom: 60px;
 }
+
+/* line 6 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\000036}}
 /* Custom container */
+
+/* line 7 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\000037}}
 .container {
   margin: 0 auto;
   max-width: 1000px;
 }
+
+/* line 11 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000311}}
 .container > hr {
   margin: 60px 0;
 }
+
+/* line 15 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000315}}
 /* Main marketing message and sign up button */
+
+/* line 16 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000316}}
 .jumbotron {
   margin: 80px 0;
   text-align: center;
 }
+
+/* line 20 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000320}}
 .jumbotron h1 {
   font-size: 100px;
   line-height: 1;
 }
+
+/* line 24 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000324}}
 .jumbotron .lead {
   font-size: 24px;
   line-height: 1.25;
 }
+
+/* line 28 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000328}}
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
 }
+
+/* line 33 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000333}}
 /* Supporting marketing content */
+
+/* line 34 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000334}}
 .marketing {
   margin: 60px 0;
 }
+
+/* line 37 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000337}}
 .marketing p + h4 {
   margin-top: 28px;
 }
+
+/* line 42 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000342}}
 /* Customize the navbar links to be fill the entire space of the .navbar */
+
+/* line 43 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000343}}
 .navbar .navbar-inner {
   padding: 0;
 }
+
+/* line 46 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000346}}
 .navbar .nav {
   margin: 0;
   display: table;
   width: 100%;
 }
+
+/* line 51 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000351}}
 .navbar .nav li {
   display: table-cell;
   width: 1%;
   float: none;
 }
+
+/* line 56 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000356}}
 .navbar .nav li a {
   font-weight: bold;
   text-align: center;
   border-left: 1px solid rgba(255,255,255,0.75);
   border-right: 1px solid rgba(0,0,0,0.1);
 }
+
+/* line 62 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000362}}
 .navbar .nav lifirst-child a {
   border-left: 0;
   border-radius: 3px 0 0 3px;
 }
+
+/* line 66 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000366}}
 .navbar .nav lilast-child a {
   border-right: 0;
   border-radius: 0 3px 3px 0;
 }
+
+/* line 71 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000371}}
 .resize {
   align: center;
   width: 500px;
@@ -69,47 +153,91 @@ body {
   max-width: 500px;
   max-height: 500px;
 }
+
+/* line 79 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000379}}
 img.wide {
   max-width: 500px;
   max-height: 500px;
   width: 500px;
   height: auto;
 }
+
+/* line 86 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000386}}
 img.tall {
   max-height: 500px;
   max-width: 500px;
   height: 500px;
   width: auto;
 }
+
+/* line 93 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000393}}
 .head-text {
   text-align: center;
 }
+
+/* line 97 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\0000397}}
 .quote {
   color: #808080;
 }
+
+/* line 101 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\00003101}}
 .data-box {
   border: 1px solid #808080;
   border-radius: 10px;
   padding: 5px 10px 5px 10px;
   margin: 2em 0em 2em 0em;
 }
+
+/* line 108 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\00003108}}
 .fixed-height-400 {
   height: 400px;
 }
+
+/* line 111 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\00003111}}
 .square {
   height: 500px;
   max-height: 500px;
 }
+
+/* line 115 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\00003115}}
 .head-text {
   line-height: normal;
 }
+
+/* line 119 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\00003119}}
 .hidden {
   visibility: none;
 }
+
+/* line 122 : /Users/elzairthesorcerer/Development/NodeJS/cltar/public/stylesheets/page.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/public\/stylesheets\/page\.styl}line{font-family:\00003122}}
 .title {
   animation-duration: 3s;
   animation-name: slidein;
 }
+
+/* line 126 : /Users/elzairthesorcerer/Development/NodeJS/cltar/node_modules/stylus/lib/functions/index.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/node_modules\/stylus\/lib\/functions\/index\.styl}line{font-family:\00003126}}
 @-moz-keyframes slidein {
   0% {
     margin-left: 100%;
@@ -121,6 +249,10 @@ img.tall {
     width: 100%;
   }
 }
+
+/* line 126 : /Users/elzairthesorcerer/Development/NodeJS/cltar/node_modules/stylus/lib/functions/index.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/node_modules\/stylus\/lib\/functions\/index\.styl}line{font-family:\00003126}}
 @-webkit-keyframes slidein {
   0% {
     margin-left: 100%;
@@ -132,6 +264,10 @@ img.tall {
     width: 100%;
   }
 }
+
+/* line 126 : /Users/elzairthesorcerer/Development/NodeJS/cltar/node_modules/stylus/lib/functions/index.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/node_modules\/stylus\/lib\/functions\/index\.styl}line{font-family:\00003126}}
 @-o-keyframes slidein {
   0% {
     margin-left: 100%;
@@ -143,6 +279,10 @@ img.tall {
     width: 100%;
   }
 }
+
+/* line 126 : /Users/elzairthesorcerer/Development/NodeJS/cltar/node_modules/stylus/lib/functions/index.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/node_modules\/stylus\/lib\/functions\/index\.styl}line{font-family:\00003126}}
 @-ms-keyframes slidein {
   0% {
     margin-left: 100%;
@@ -154,6 +294,10 @@ img.tall {
     width: 100%;
   }
 }
+
+/* line 126 : /Users/elzairthesorcerer/Development/NodeJS/cltar/node_modules/stylus/lib/functions/index.styl */
+
+@media -stylus-debug-info{filename{font-family:file\:\/\/\/Users\/elzairthesorcerer\/Development\/NodeJS\/cltar\/node_modules\/stylus\/lib\/functions\/index\.styl}line{font-family:\00003126}}
 @keyframes slidein {
   0% {
     margin-left: 100%;
