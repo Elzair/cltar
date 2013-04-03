@@ -1,4 +1,4 @@
-!!!
+doctype 5
 html
   head
     title= title
@@ -11,4 +11,11 @@ html
     script(type='text/javascript', src='/bootstrap/js/bootstrap.min.js')
     script(type='text/javascript', src='/javascripts/farmfacts.js')
     script(type='text/javascript', src='/javascripts/killcounter.js')
-  body!= body
+  body
+    .container
+      include head
+      .container-fluid.page-container
+        .row-fluid
+          .span8
+            !{body}
+          include sidebar
