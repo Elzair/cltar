@@ -1,5 +1,6 @@
 var i=0, facts = {};
 function nextFact() {
+  $('.fact-link').attr('href', facts[i].guid);
   $('.fact-holder').html(facts[i].content);
   i = (i == facts.length) ? 0 : i+1;
 }

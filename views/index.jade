@@ -1,7 +1,7 @@
 script(type='text/javascript', src='/javascripts/home.js')
 .container
   .masthead
-    h3.muted Charlotte Animal Rights
+    h3.muted.title Charlotte Animal Rights
     .navbar
       .navbar-inner
         .container
@@ -32,25 +32,19 @@ script(type='text/javascript', src='/javascripts/home.js')
             li.hidden(data-target="#myCarousel", data-slide-to="3")
             li.hidden(data-target="#myCarousel", data-slide-to="4")
           .carousel-inner
-            .item.active
-              img.resize(src="/images/img01.jpg")
-            .item              
-              img.resize(src="/images/img02.jpg")
-            .item              
-              img.resize(src="/images/img03.jpg")
-            .item              
-              img.resize(src="/images/img04.jpg")
-            .item              
-              img.resize(src="/images/img05.jpg")
-          a.carousel-control.left(href="#myCarousel", data-slide="prev")
-          a.carousel-control.right(href="#myCarousel", data-slide="next") 
+            .item.square.active(style="background:url(/images/img01.jpg);background-size:100% 100%;background-repeat:no-repeat;")
+            .item.square(style="background:url(/images/img02.jpg);background-size:100% 100%;background-repeat:no-repeat;")              
+            .item.square(style="background:url(/images/img03.jpg);background-size:100% 100%;background-repeat:no-repeat;")              
+            .item.square(style="background:url(/images/img04.jpg);background-size:100% 100%;background-repeat:no-repeat;")              
+            .item.square(style="background:url(/images/img05.jpg);background-size:100% 100%;background-repeat:no-repeat;")              
       .span4
         .well.sidebar-nav
           ul.nav.nav-list
             li
               .fixed-height-250
                 .data-box
-                  p.fact-holder.quote
+                  a.fact-link
+                    p.fact-holder.quote
             li
               .data-box
                 p.head-text Animals killed since you opened this page:

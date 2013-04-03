@@ -96,9 +96,72 @@ img.tall {
 .fixed-height-400 {
   height: 400px;
 }
+.square {
+  height: 500px;
+  max-height: 500px;
+}
 .head-text {
   line-height: normal;
 }
 .hidden {
   visibility: none;
+}
+.title {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+@-moz-keyframes slidein {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  100% {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@-webkit-keyframes slidein {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  100% {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@-o-keyframes slidein {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  100% {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@-ms-keyframes slidein {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  100% {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@keyframes slidein {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  100% {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
