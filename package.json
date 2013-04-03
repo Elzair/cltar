@@ -1,14 +1,11 @@
 {
     "name": "cltar"
-  , "version": "0.0.1"
+  , "version": "0.0.3"
   , "private": true
-  , "scripts": {
-      "start": "node app"
-    }
   , "dependencies": {
       "express": "*"
-    , "less": "*"
+    , "stylus": "*"
     , "jade": "*"
   }
-  , "readme": "\nCharlotte Animal Rights\n=======================\n\nThis repository features the working code for the Charlotte Animal Rights website."
+  , "readme": "\nCharlotte Animal Rights\n=======================\nThis repository features the working code for the Charlotte Animal Rights website."
 }
