@@ -1,1 +1,13 @@
 p This is a test.
+form.upload.image(action="/admin/upload/image", method="post", enctype="multipart/form-data")
+  .upload.image
+    select.upload.image
+      option(value="photo") Photo
+      option(value="carousel") Carousel
+      option(value="background") Background
+    input.upload.image(type="file", name="image")
+    input.upload.image(type="submit", value="Upload")
+if upload == 1      
+  p.upload.image.text Image successfully uploaded!
+else
+  p.upload.image.text.hidden
