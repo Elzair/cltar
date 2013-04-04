@@ -1,10 +1,17 @@
-
+var fs = require('fs');
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Charlotte Animal Rights - Home' })
+  carousel_path = './public/images/carousel/'
+  fs.readdir(carousel_path, function(err, images){
+    //console.log(images)
+    for (i=0; i<images.length; i++)
+      // Strip out './public' from path
+      images[i] = carousel_path.substring(8) + images[i];
+    res.render('index', { title: 'Charlotte Animal Rights - Home', images: images })
+  })
 };
 
 exports.history = function(req, res){
