@@ -4,50 +4,33 @@
  */
 
 var express = require('express')
-  , fs = require('fs')
-  , auth = require('./auth/auth').auth
-  , routes = require('./routes/routes');
+  , routes = require('./routes')
+  , user = require('./routes/user')
+  , http = require('http')
+  , path = require('path');
 
-// Define authenticated user
+var app = express();
 
-var port;
+// all environments
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(app.router);
+  app.use(require('stylus').middleware(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-var app = module.exports = express.createServer();
-
-// Configuration
-
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  //app.use(express.bodyParser());
-  app.use(express.json());
-  app.use(express.urlencoded());
-  app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public'}));
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  port = 3000;
-});
-
-app.configure('production', function(){
+// development only
+if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  port = 80;
-});
-
-// Routes
+}
 
 app.get('/', routes.index);
-app.get('/news', routes.news);
-app.get('/about', routes.about);
-app.get('/contact', routes.contact);
-app.get('/photos', routes.photos);
-app.get('/links', routes.links);
-app.get('/admin', auth, routes.admin);
-app.post('/admin/upload/image', auth, routes.upload_image);
+app.get('/users', user.list);
 
-app.listen(port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});

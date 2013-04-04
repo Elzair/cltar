@@ -1,15 +1,5 @@
-script(type='text/javascript', src='/javascripts/home.js')
-.carousel.slide#myCarousel(data-interval="5000")
-  ol.carousel-indicators
-    each image, i in images
-      if i == 0
-        li.hidden.active(data-target="#myCarousel", data-slide-to=i)
-      else
-        li.hidden(data-target="#myCarousel", data-slide-to=i)
-  .carousel-inner
-    each image, i in images
-      - var st = "background:url(" + image + ");background-size:100% 100%;background-repeat:no-repeat;"
-      if i == 0
-        .item.square.active(style=st)
-      else
-        .item.square(style=st)
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
