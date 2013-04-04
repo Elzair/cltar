@@ -6,6 +6,11 @@
 var express = require('express')
   , routes = require('./routes');
 
+// Define authenticated user
+var auth = express.basicAuth(function(user, pass){
+    return  user == 'gaia' && pass == 'VeganOutreach';
+});
+
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -31,6 +36,12 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+app.get('/history', routes.history);
+app.get('/contact', routes.contact);
+app.get('/join', routes.join);
+app.get('/photos', routes.photos);
+app.get('/links', routes.links);
+app.get('/admin', auth, routes.admin);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
