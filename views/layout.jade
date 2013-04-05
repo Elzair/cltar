@@ -9,8 +9,10 @@ html
     link(rel='stylesheet', href='/stylesheets/killcounter.css')
     script(type='text/javascript', src='/javascripts/jquery.min.js')
     script(type='text/javascript', src='/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src="/javascripts/htmlparser.js')
     script(type='text/javascript', src='/javascripts/farmfacts.js')
     script(type='text/javascript', src='/javascripts/killcounter.js')
+    script(type='text/javascript', src='/javascripts/main.js')
   body
     .background
       img.stretch(src="/images/background/background01.jpg", alt="Background Image")
@@ -19,7 +21,7 @@ html
       .container-fluid.page-container.no-padding
         .row-fluid.squashed
           .span8.squashed
-            .well
+            .well.page-content
               block content
           .squashed.span4
             include sidebar

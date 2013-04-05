@@ -1,4 +1,6 @@
 var fs = require('fs')
+  , jade = require('jade')
+  , partial = require('./helpers/partial_renderer').partial
   //, formidable = require('formidable')
   ;
 /*
@@ -11,28 +13,64 @@ exports.index = function(req, res){
     for (i=0; i<images.length; i++)
       // Strip out './public' from path
       images[i] = carousel_path.substring(8) + images[i];
-    res.render('index', { title: 'Charlotte Animal Rights - Home', active: 0, images: images });
+    options = { title: 'Charlotte Animal Rights - Home', active: 0, images: images };
+    if (req.xhr){
+      helper = new partial('index', options);
+      helper.on('done', function(ret){ res.json(ret); });
+    }
+    else
+      res.render('index', options);
   });
 };
 
 exports.about = function(req, res){
-  res.render('about', { title: 'Charlotte Animal Rights - About', active: 1 });
+  options = { title: 'Charlotte Animal Rights - About', active: 1 };
+  if (req.xhr){
+    helper = new partial('about', options);
+    helper.on('done', function(ret){ res.json(ret); });
+  }
+  else
+    res.render('about', options);
 };
 
 exports.contact = function(req, res){
-  res.render('contact', { title: 'Charlotte Animal Rights - Contact', active: 2 });
+  options = { title: 'Charlotte Animal Rights - Contact', active: 2 };
+  if (req.xhr){
+    helper = new partial('contact', options);
+    helper.on('done', function(ret){ res.json(ret); });
+  }
+  else
+    res.render('contact', options);
 };
 
 exports.news = function(req, res){
-  res.render('news', { title: 'Charlotte Animal Rights - News', active: 3 });
+  options = { title: 'Charlotte Animal Rights - News', active: 3 };
+  if (req.xhr){
+    helper = new partial('news', options);
+    helper.on('done', function(ret){ res.json(ret); });
+  }
+  else
+    res.render('news', options);
 };
 
 exports.photos = function(req, res){
-  res.render('photos', { title: 'Charlotte Animal Rights - Photos', active: 4 });
+  options = { title: 'Charlotte Animal Rights - Photos', active: 4 }
+  if (req.xhr){
+    helper = new partial('photos', options);
+    helper.on('done', function(ret){ res.json(ret); });
+  }
+  else
+    res.render('photos', options);
 };
 
 exports.links = function(req, res){
-  res.render('links', { title: 'Charlotte Animal Rights - External Links', active: 5 });
+  options = { title: 'Charlotte Animal Rights - External Links', active: 5 }
+  if (req.xhr){
+    helper = new partial('links', options);
+    helper.on('done', function(ret){ res.json(ret); });
+  }
+  else
+    res.render('links', { title: 'Charlotte Animal Rights - External Links', active: 5 });
 };
 
 exports.admin = function(req, res){
@@ -49,7 +87,7 @@ exports.upload_image = function(req, res){
   else if (req.body.selection == 'background')
     file_path = 'background';
   else
-    return res.status(500).end('An Error occurred.');
+    return res.send(500, 'An Error occurred.');
   // Change image name to UTC timestamp to prevent conflicts.
   file_name = new Date().getTime();
   switch(req.files.image.type)
@@ -70,7 +108,7 @@ exports.upload_image = function(req, res){
       file_ext = '.bmp';
       break;
     default:
-      return res.status(500).end('Unsupported Image Type!')
+      return res.send(500, 'Unsupported Image Type!')
   } 
     
   fs.rename(req.files.image.path, './public/images/' + file_path +'/' + file_name + file_ext, function(err){
@@ -80,6 +118,5 @@ exports.upload_image = function(req, res){
     else
       return res.redirect('/admin?upload=1')
   });
-  
 };
 

@@ -1,16 +1,17 @@
 extends layout
 block content
-  p This is a test.
-  form.upload.image(action="/admin/upload/image", method="post", enctype="multipart/form-data")
-    .upload.image
-      select.upload.image(name="selection")
-        option(value="photo") Photo
-        option(value="carousel") Carousel
-        option(value="background") Background
-      input.upload.image.file(type="file", name="image")
-      input.upload.image.submit(type="submit", value="Upload")
-  if upload == 1      
-    p.upload.image.text Image successfully uploaded!
-  else
-    p.upload.image.error.hidden
-  script(type="text/javascript", src="/javascripts/admin.js")
+  .content.admin
+    p This is a test.
+    form.upload.image(action="/admin/upload/image", method="post", enctype="multipart/form-data")
+      .upload.image
+        select.upload.image(name="selection")
+          option(value="photo") Photo
+          option(value="carousel") Carousel
+          option(value="background") Background
+        input.upload.image.file(type="file", name="image")
+        input.upload.image.submit(type="submit", value="Upload")
+    if upload == 1      
+      p.upload.image.text Image successfully uploaded!
+    else
+      p.upload.image.error.hidden
+    script(type="text/javascript", src="/javascripts/admin.js")
