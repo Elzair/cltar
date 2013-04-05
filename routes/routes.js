@@ -41,11 +41,23 @@ exports.admin = function(req, res){
 };
 
 exports.upload_image = function(req, res){
-  console.log(JSON.stringify(req.files))
-  if (req.xhr)
-    return res.status(200).end()
+  console.log(JSON.stringify(req.body))
+  filepath = '';
+  if (req.body.selection == 'photo')
+    filepath = 'photos';
+  else if (req.body.selection == 'carousel')
+    filepath = 'carousel';
+  else if (req.body.selection == 'background')
+    filepath = 'background';
   else
-    return res.redirect('/admin?upload=1')
+    return res.status(500).end('An Error occurred.');
+  fs.rename(req.files.image.path, './public/images/' + filepath +'/' + req.files.image.name, function(err){
+    if (err) console.log(err);
+    if (req.xhr)
+      return res.status(200).end()
+    else
+      return res.redirect('/admin?upload=1')
+  });
   
 };
 

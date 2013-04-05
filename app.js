@@ -4,8 +4,9 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , routes = require('./routes/routes')
   , user = require('./routes/user')
+  , auth = require('./auth/auth').auth
   , http = require('http')
   , path = require('path');
 
@@ -20,7 +21,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
+app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -29,7 +30,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/news', routes.news);
+app.get('/about', routes.about);
+app.get('/contact', routes.contact);
+app.get('/photos', routes.photos);
+app.get('/links', routes.links);
+app.get('/admin', auth, routes.admin);
+app.post('/admin/upload/image', auth, routes.upload_image);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
