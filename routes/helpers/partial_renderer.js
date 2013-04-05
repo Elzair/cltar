@@ -15,6 +15,7 @@ var partial_renderer = function(template, options){
     self.emit('done', ret);
   });
 };
+
 util.inherits(partial_renderer, events.EventEmitter);
 
 exports.partial = partial_renderer;

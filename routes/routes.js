@@ -1,6 +1,7 @@
 var fs = require('fs')
   , jade = require('jade')
   , partial = require('./helpers/partial_renderer').partial
+  , chooser = require('./helpers/background').chooser
   //, formidable = require('formidable')
   ;
 /*
@@ -13,68 +14,89 @@ exports.index = function(req, res){
     for (i=0; i<images.length; i++)
       // Strip out './public' from path
       images[i] = carousel_path.substring(8) + images[i];
-    options = { title: 'Charlotte Animal Rights - Home', active: 0, images: images };
-    if (req.xhr){
-      helper = new partial('index', options);
-      helper.on('done', function(ret){ res.json(ret); });
-    }
-    else
-      res.render('index', options);
+    my_chooser = new chooser();
+    my_chooser.on('done', function(bg){ 
+      options = { title: 'Charlotte Animal Rights - Home', active: 0, images: images, bg: bg };
+      if (req.xhr){
+        helper = new partial('index', options);
+        helper.on('done', function(ret){ res.json(ret); });
+      }
+      else
+        res.render('index', options);
+    });
   });
 };
 
 exports.about = function(req, res){
-  options = { title: 'Charlotte Animal Rights - About', active: 1 };
-  if (req.xhr){
-    helper = new partial('about', options);
-    helper.on('done', function(ret){ res.json(ret); });
-  }
-  else
-    res.render('about', options);
+  my_chooser = new chooser();
+  my_chooser.on('done', function(bg){
+    options = { title: 'Charlotte Animal Rights - About', active: 1, bg: bg };
+    if (req.xhr){
+      helper = new partial('about', options);
+      helper.on('done', function(ret){ res.json(ret); });
+    }
+    else
+      res.render('about', options);
+  });
 };
 
 exports.contact = function(req, res){
-  options = { title: 'Charlotte Animal Rights - Contact', active: 2 };
-  if (req.xhr){
-    helper = new partial('contact', options);
-    helper.on('done', function(ret){ res.json(ret); });
-  }
-  else
-    res.render('contact', options);
+  my_chooser = new chooser();
+  my_chooser.on('done', function(bg){
+    options = { title: 'Charlotte Animal Rights - Contact', active: 2, bg: bg };
+    if (req.xhr){
+      helper = new partial('contact', options);
+      helper.on('done', function(ret){ res.json(ret); });
+    }
+    else
+      res.render('contact', options);
+  });
 };
 
 exports.news = function(req, res){
-  options = { title: 'Charlotte Animal Rights - News', active: 3 };
-  if (req.xhr){
-    helper = new partial('news', options);
-    helper.on('done', function(ret){ res.json(ret); });
-  }
-  else
-    res.render('news', options);
+  my_chooser = new chooser();
+  my_chooser.on('done', function(bg){
+    options = { title: 'Charlotte Animal Rights - News', active: 3, bg: bg };
+    if (req.xhr){
+      helper = new partial('news', options);
+      helper.on('done', function(ret){ res.json(ret); });
+    }
+    else
+      res.render('news', options);
+  });
 };
 
 exports.photos = function(req, res){
-  options = { title: 'Charlotte Animal Rights - Photos', active: 4 }
-  if (req.xhr){
-    helper = new partial('photos', options);
-    helper.on('done', function(ret){ res.json(ret); });
-  }
-  else
-    res.render('photos', options);
+  my_chooser = new chooser();
+  my_chooser.on('done', function(bg){
+    options = { title: 'Charlotte Animal Rights - Photos', active: 4, bg: bg }
+    if (req.xhr){
+      helper = new partial('photos', options);
+      helper.on('done', function(ret){ res.json(ret); });
+    }
+    else
+      res.render('photos', options);
+  });
 };
 
 exports.links = function(req, res){
-  options = { title: 'Charlotte Animal Rights - External Links', active: 5 }
-  if (req.xhr){
-    helper = new partial('links', options);
-    helper.on('done', function(ret){ res.json(ret); });
-  }
-  else
-    res.render('links', { title: 'Charlotte Animal Rights - External Links', active: 5 });
+  my_chooser = new chooser();
+  my_chooser.on('done', function(bg){
+    options = { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg }
+    if (req.xhr){
+      helper = new partial('links', options);
+      helper.on('done', function(ret){ res.json(ret); });
+    }
+    else
+      res.render('links', { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg });
+  });
 };
 
 exports.admin = function(req, res){
-  res.render('admin', { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload });
+  my_chooser = new chooser();
+  my_chooser.on('done', function(bg){
+    res.render('admin', { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload, bg: bg });
+  });
 };
 
 exports.upload_image = function(req, res){
