@@ -8,7 +8,6 @@ var fs = require('fs')
 exports.index = function(req, res){
   carousel_path = './public/images/carousel/'
   fs.readdir(carousel_path, function(err, images){
-    //console.log(images)
     for (i=0; i<images.length; i++)
       // Strip out './public' from path
       images[i] = carousel_path.substring(8) + images[i];
@@ -16,16 +15,16 @@ exports.index = function(req, res){
   })
 };
 
-exports.news = function(req, res){
-  res.render('news', { title: 'Charlotte Animal Rights - News', active: 1 })
-};
-
 exports.about = function(req, res){
-  res.render('about', { title: 'Charlotte Animal Rights - About', active: 2 })
+  res.render('about', { title: 'Charlotte Animal Rights - About', active: 1 })
 };
 
 exports.contact = function(req, res){
-  res.render('contact', { title: 'Charlotte Animal Rights - Contact', active: 3 })
+  res.render('contact', { title: 'Charlotte Animal Rights - Contact', active: 2 })
+};
+
+exports.news = function(req, res){
+  res.render('news', { title: 'Charlotte Animal Rights - News', active: 3 })
 };
 
 exports.photos = function(req, res){
@@ -41,7 +40,7 @@ exports.admin = function(req, res){
 };
 
 exports.upload_image = function(req, res){
-  console.log(JSON.stringify(req.body))
+  console.log(JSON.stringify(req.files))
   filepath = '';
   if (req.body.selection == 'photo')
     filepath = 'photos';

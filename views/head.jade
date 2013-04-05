@@ -4,16 +4,40 @@
     .navbar-inner
       .container
         ul.nav
-          li.active
-            a(href="/") Main
-          li
-            a(href="/about") About
-          li
-            a(href="/contact") Contact
-          li
-            a(href="/news") News
-          li
-            a(href="/photos") Photos
-          li
-            a(href="/links") Other Sites
+          if active == 0
+            li.active
+              a(href="/") Main
+          else
+            li
+              a(href="/") Main
+          if active == 1
+            li.active
+              a(href="/about") About
+          else
+            li
+              a(href="/about") About
+          if active == 2
+            li.active
+              a(href="/contact") Contact
+          else
+            li
+              a(href="/contact") Contact
+          if active == 3
+            li.active
+              a(href="/news") News
+          else
+            li
+              a(href="/news") News
+          if active == 4
+            li.active
+              a(href="/photos") Photos
+          else
+            li
+              a(href="/photos") Photos
+          if active == 5 
+            li.active
+              a(href="/links") Links
+          else
+            li
+              a(href="/links") Links
 

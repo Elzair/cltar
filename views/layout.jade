@@ -12,11 +12,14 @@ html
     script(type='text/javascript', src='/javascripts/farmfacts.js')
     script(type='text/javascript', src='/javascripts/killcounter.js')
   body
+    .background
+      img.stretch(src="/images/background/background01.jpg", alt="Background Image")
     .container
       include head
       .container-fluid.page-container
         .row-fluid
           .span8
             block content
-          include sidebar
+          .span4
+            include sidebar
 
