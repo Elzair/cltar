@@ -1,7 +1,7 @@
 var fs = require('fs')
   , jade = require('jade')
   , partial = require('./helpers/partial_renderer').partial
-  , chooser = require('./helpers/background').chooser
+  , background = require('./helpers/background')
   //, formidable = require('formidable')
   ;
 /*
@@ -14,8 +14,8 @@ exports.index = function(req, res){
     for (i=0; i<images.length; i++)
       // Strip out './public' from path
       images[i] = carousel_path.substring(8) + images[i];
-    my_chooser = new chooser();
-    my_chooser.on('done', function(bg){ 
+    //choose = new chooser();
+    background.choose().on('done', function(bg){ 
       options = { title: 'Charlotte Animal Rights - Home', active: 0, images: images, bg: bg };
       if (req.xhr){
         helper = new partial('index', options);
@@ -28,8 +28,8 @@ exports.index = function(req, res){
 };
 
 exports.about = function(req, res){
-  my_chooser = new chooser();
-  my_chooser.on('done', function(bg){
+  //choose = new chooser();
+  background.choose().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - About', active: 1, bg: bg };
     if (req.xhr){
       helper = new partial('about', options);
@@ -41,8 +41,8 @@ exports.about = function(req, res){
 };
 
 exports.contact = function(req, res){
-  my_chooser = new chooser();
-  my_chooser.on('done', function(bg){
+  //choose = new chooser();
+  background.choose().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Contact', active: 2, bg: bg };
     if (req.xhr){
       helper = new partial('contact', options);
@@ -54,8 +54,8 @@ exports.contact = function(req, res){
 };
 
 exports.news = function(req, res){
-  my_chooser = new chooser();
-  my_chooser.on('done', function(bg){
+  //choose = new chooser();
+  background.choose().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - News', active: 3, bg: bg };
     if (req.xhr){
       helper = new partial('news', options);
@@ -67,8 +67,8 @@ exports.news = function(req, res){
 };
 
 exports.photos = function(req, res){
-  my_chooser = new chooser();
-  my_chooser.on('done', function(bg){
+  //choose = new chooser();
+  background.choose().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Photos', active: 4, bg: bg }
     if (req.xhr){
       helper = new partial('photos', options);
@@ -80,8 +80,8 @@ exports.photos = function(req, res){
 };
 
 exports.links = function(req, res){
-  my_chooser = new chooser();
-  my_chooser.on('done', function(bg){
+  //choose = new chooser();
+  background.choose().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg }
     if (req.xhr){
       helper = new partial('links', options);
@@ -92,9 +92,13 @@ exports.links = function(req, res){
   });
 };
 
+exports.backgrounds = function(req, res){
+  background.get_all().on('done', function(bgs){ res.json(bgs); });
+};
+
 exports.admin = function(req, res){
-  my_chooser = new chooser();
-  my_chooser.on('done', function(bg){
+  choose = new chooser();
+  background.choose().on('done', function(bg){
     res.render('admin', { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload, bg: bg });
   });
 };

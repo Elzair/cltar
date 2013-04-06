@@ -34,6 +34,7 @@ app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/photos', routes.photos);
 app.get('/links', routes.links);
+app.get('/backgrounds', routes.backgrounds);
 app.get('/admin', auth, routes.admin);
 app.post('/admin/upload/image', auth, routes.upload_image);
 
