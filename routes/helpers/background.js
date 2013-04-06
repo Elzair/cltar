@@ -1,9 +1,12 @@
 var fs = require('fs')
+  , path = require('path')
   , events = require('events')
   , util = require('util')
   ;
 
-function my_chooser(){
+// This function returns the relative URL of a
+// randomly chosen file in /public/images/backgrounds.
+function random_chooser(){
   events.EventEmitter.call(this);
   var self = this;
   background_path = './public/images/background/';
@@ -14,32 +17,36 @@ function my_chooser(){
     images[i] = background_path.substring(8) + images[i];
     self.emit('done', images[i]);
   });
-};
+}
 
-function getter(path){
+// This function retrieves all the files in a given
+// subdirectory of public.
+function getter(p){
   events.EventEmitter.call(this);
   var self = this;
-  background_path = './public/images/background/';
-  fs.readdir(background_path, function(err, images){
-    console.log(background_path);
+  //background_path = './public/images/background/';
+  pp = path.join(__dirname, 'public');
+  ppp = path.join(pp, p);
+  fs.readdir(ppp, function(err, files){
+    console.log(ppp);
     // Strip './public' from paths
-    for (i=0; i<images.length; i++)
-     images[i] = background_path.substring(8) + images[i];
-    bgs = JSON.stringify(images);
-    self.emit('done', bgs);
+    for (i=0; i<files.length; i++)
+     files[i] = path.join(p, files[i]);
+    out = JSON.stringify(files);
+    self.emit('done', out);
   });
-};
+}
 
-// Both objects should inherit from EventEmitter.
-util.inherits(my_chooser, events.EventEmitter);
+// All helper objects should inherit from EventEmitter.
+util.inherits(random_chooser, events.EventEmitter);
 util.inherits(getter, events.EventEmitter);
 
 // Exports
 //
 exports.choose = function(){
-  return new my_chooser();
+  return new random_chooser();
 };
 
-exports.get_all = function() {
-  return new getter();
+exports.get_all = function(p) {
+  return new getter(p);
 };
