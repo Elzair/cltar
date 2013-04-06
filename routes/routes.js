@@ -103,7 +103,8 @@ exports.admin = function(req, res){
 };
 
 exports.upload_image = function(req, res){
-  console.log(JSON.stringify(req.files))
+  console.log(JSON.stringify(req.files));
+  console.log(JSON.stringify(req.body));
   file_path = '';
   if (req.body.selection == 'photo')
     file_path = 'photos';
@@ -137,9 +138,9 @@ exports.upload_image = function(req, res){
   } 
     
   fs.rename(req.files.image.path, './public/images/' + file_path +'/' + file_name + file_ext, function(err){
-    if (err) console.log(err);
+    if (err){ console.log('Error: '+err); res.send(500, 'Upload Unsuccessful') };
     if (req.xhr)
-      return res.status(200).end()
+      return res.send(200, 'Upload Successful');
     else
       return res.redirect('/admin?upload=1')
   });

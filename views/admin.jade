@@ -1,7 +1,7 @@
 extends layout
 block content
   .content.admin
-    p This is a test.
+    h4.upload.image Upload Image:
     form.upload.image(action="/admin/upload/image", method="post", enctype="multipart/form-data")
       .upload.image
         select.upload.image(name="selection")
@@ -14,7 +14,7 @@ block content
     if upload == 1      
       p.upload.image.text Image successfully uploaded!
     else
-      p.upload.image.error.hidden Image successfully uploaded!
+      p.upload.image.hidden Nothing
     .modal.hide.fade
       .modal-header
         button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;

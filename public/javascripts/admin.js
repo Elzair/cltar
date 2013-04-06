@@ -1,20 +1,27 @@
 $(document).ready(function(){
-  $('.hideme').hide();
+  $('.hideme').hide(); // Hide Non-Ajax Icons
+  $('p.upload.image').removeClass('hidden').hide();
+  // Event fires when user selects file
   $('input.file').change(function(){
-    $('p.text').addClass('hidden').removeClass('error');
-    //$('form.upload.image').submit();
+    $('p.upload.image').removeClass('error').hide();
     $('.modal').modal({ keyboard: false });
   });
-  $('.modal-upload').click(function(){
+  // Event fires when user clicks OK in modal window
+  $('a.modal-upload').click(function(e){
+    e.preventDefault();
+    $('input.upload.image.caption').val($('input.modal-upload.image.caption').val());
+    $('.modal').modal('hide');
     $('form.upload.image').submit();
   });
-  $('form.upload.image').submit(function(){
+  // Submit form via AJAX using jquery.form plugin
+  $('form.upload.image').submit(function(e){
+    e.preventDefault();
     $(this).ajaxSubmit({
       error: function(xhr){
-        $('p.text').removeClass('hidden').addClass('error').text('Error uploading image!');
+        $('p.upload.image').addClass('error').text('Error uploading image!').show();
       },
       success: function(res){
-        $('p.text').removeClass('hidden').text('Image successfully uploaded!');
+        $('p.upload.image').text('Image successfully uploaded!').show();
       }
     });
   });
