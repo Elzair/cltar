@@ -97,7 +97,6 @@ exports.backgrounds = function(req, res){
 };
 
 exports.admin = function(req, res){
-  choose = new chooser();
   background.choose().on('done', function(bg){
     res.render('admin', { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload, bg: bg });
   });
