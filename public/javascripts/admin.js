@@ -30,7 +30,7 @@ $(document).ready(function(){
   });
  
   // Submit other form via AJAX using jquery.form plugin 
-  $('form.upload.news').submit(function(e){
+  $('input.upload.news').click(function(e){
     e.preventDefault();
     $('p.upload.news').removeClass('error').hide();
     if ($('textarea.upload.news').val() == ''){
@@ -41,12 +41,12 @@ $(document).ready(function(){
       $('p.upload.news').addClass('error').text('Invalid Date!').show();
       return false;
     }
-    $(this).ajaxSubmit({
+    $('form.upload.news').ajaxSubmit({
       error: function(xhr){
         $('p.upload.news').addClass('error').text('Error uploading post!').show();
       },
       success: function(res){
-        $('p.upload.nred').text('Post successfully uploaded!').show();
+        $('p.upload.news').text('Post successfully uploaded!').show();
       }
   });
   // Event fires when user clicks "Upload News Post" button

@@ -28,11 +28,11 @@ block content
     form.upload.news(action="/admin/upload/news", method="post", enctype="multipart/form-data")
       .upload.news
         textarea.upload.news(name="news", rows="10", wrap="hard") 
-        .input-append.date#dp3(data-date-format="yyyy-mm-dd")
-          input.span2.datestore(type="text", name="date", size="16", readonly)
+        input.upload.news.pull-right.upload-adjust(type="submit", value="Upload News Post", style="height:30px;")
+        .input-append.date.pull-right#dp3(data-date-format="yyyy-mm-dd")
+          input.datestore(type="text", name="date", size="16", readonly)
           span.add-on
             i.icon-calendar
-        input.upload.news.pull-right(type="submit", value="Upload News Post")
     if upload == 2
       p.upload.news Post Successfully Uploaded
     else
