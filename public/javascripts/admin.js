@@ -1,7 +1,11 @@
 $(document).ready(function(){
-  $('.hideme').toggle();
+  $('.hideme').hide();
   $('input.file').change(function(){
     $('p.text').addClass('hidden').removeClass('error');
+    //$('form.upload.image').submit();
+    $('.modal').modal({ keyboard: false });
+  });
+  $('.modal-upload').click(function(){
     $('form.upload.image').submit();
   });
   $('form.upload.image').submit(function(){

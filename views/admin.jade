@@ -9,7 +9,7 @@ block content
           option(value="carousel") Carousel
           option(value="background") Background
         input.upload.image.file(type="file", name="image")
-        input.upload.image.caption.hideme(type="textarea", name="caption")
+        input.upload.image.caption.hideme(type="textarea", name="caption", rows="4", cols="30")
         input.upload.image.submit.hideme(type="submit", value="Upload")
     if upload == 1      
       p.upload.image.text Image successfully uploaded!
@@ -20,7 +20,7 @@ block content
         button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
         h3 Enter an (optional) caption of the image:
       .modal-body
-        input.modal-upload.image.caption(type="textarea")
+        input.modal-upload.image.caption(type="textarea", rows="4", cols="30")
       .modal-footer
         a.btn(href="#") Cancel
         a.btn.btn-primary.modal-upload(href="#") Upload
