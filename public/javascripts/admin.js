@@ -33,7 +33,7 @@ $(document).ready(function(){
   $('input.upload.news').click(function(e){
     e.preventDefault();
     $('p.upload.news').removeClass('error').hide();
-    if ($('textarea.upload.news').val() == ''){
+    if ($('textarea.upload.news').val() === ''){
       $('p.upload.news').addClass('error').text('You need to write something!').show();
       return false;
     }
@@ -48,6 +48,7 @@ $(document).ready(function(){
       success: function(res){
         $('p.upload.news').text('Post successfully uploaded!').show();
       }
+    });
   });
   // Event fires when user clicks "Upload News Post" button
   //$('input[type="submit"].upload.news').click(function(e){
