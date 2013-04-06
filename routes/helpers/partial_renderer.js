@@ -12,7 +12,6 @@ var partial_renderer = function(template, options, layout){
   events.EventEmitter.call(this);
   var self = this;
   view_path = path.join(path.dirname(), 'views', template + '.jade');
-  console.log('view_path: '+view_path);
   file_name = path.join('views', template);
   fs.readFile(view_path, 'utf8', function(err, data){
     if (err){
@@ -22,7 +21,6 @@ var partial_renderer = function(template, options, layout){
     // Stripping the first line make Jade render only the template not the layout.
     input = data.replace('extends '+layout+'\n','');
     rendered = jade.compile(input, {filename: file_name})(options);
-    console.log(rendered);
     ret = JSON.stringify({'view': template, 'src': rendered});
     self.emit('done', ret);
   });
@@ -31,6 +29,5 @@ var partial_renderer = function(template, options, layout){
 util.inherits(partial_renderer, events.EventEmitter);
 
 exports.render_partial = function(template, options, layout){
-  console.log('Got Here');
   return new partial_renderer(template, options, layout);
 };

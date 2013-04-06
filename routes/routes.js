@@ -12,7 +12,6 @@ var fs = require('fs')
 
 exports.index = function(req, res){
   carousel_path = path.join('images','carousel');
-  console.log(carousel_path);
   getter.get_all(carousel_path)
   .on('done', function(imgs){
     images = JSON.parse(imgs);
@@ -26,7 +25,6 @@ exports.index = function(req, res){
     });
   })
   .on('error', function(err){
-    console.log('Error: '+err);
     res.send(500, 'Error');
   });
 };
@@ -99,8 +97,6 @@ exports.admin = function(req, res){
 };
 
 exports.upload_image = function(req, res){
-  //console.log(JSON.stringify(req.files));
-  //console.log(JSON.stringify(req.body));
   dir = '';
   if (req.body.selection === 'photo')
     dir = 'photos';
@@ -136,7 +132,6 @@ exports.upload_image = function(req, res){
 
   fs.rename(req.files.image.path, file_path, function(err){
     if (err){ 
-      console.log('Error: '+err); 
       res.send(500, 'Upload Unsuccessful'); 
     }
     if (req.xhr)
@@ -147,9 +142,7 @@ exports.upload_image = function(req, res){
 };
 
 exports.upload_news = function(req, res){
-  console.log(JSON.stringify(req.body));
   if ((req.body.news === '') || isNaN(Date.parse(req.body.date))){
-    console.log('Invalid Parameters');
     res.send(500, 'Invalid Parameters!');
     return;
   }
@@ -158,7 +151,6 @@ exports.upload_news = function(req, res){
   file_path = path.join(path.dirname, 'public', 'news', file_name);
   fs.writeFile(file_path, req.body.news, function(err){
     if (err) {
-      console.log('Error: '+err);
       res.send(500, 'Error!');
     }
     if (req.xhr)

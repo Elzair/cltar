@@ -34,7 +34,6 @@ function get_files(p){
       self.emit('error', err);
       return;
     }
-    console.log(JSON.stringify(files));
     for (i=0; i<files.length; i++)
      files[i] = path.join(p, files[i]);
     out = JSON.stringify(files);
