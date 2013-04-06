@@ -1,16 +1,28 @@
 var fs = require('fs')
+  , path = require('path')
   , jade = require('jade')
   , events = require('events')
   , util = require('util')
   ;
 
-var partial_renderer = function(template, options){
+// This function renders only the Jade template passed to it
+// without any layout.
+var partial_renderer = function(template, options, layout){
+  layout = layout || 'layout'; // name of layout to strip
   events.EventEmitter.call(this);
   var self = this;
-  fs.readFile('./views/' + template + '.jade', 'utf8', function(err, data){
+  view_path = path.join(path.dirname(), 'views', template + '.jade');
+  console.log('view_path: '+view_path);
+  file_name = path.join('views', template);
+  fs.readFile(view_path, 'utf8', function(err, data){
+    if (err){
+      self.emit('error', err);
+      return;
+    }
     // Stripping the first line make Jade render only the template not the layout.
-    input = data.replace('extends layout\n','');
-    rendered = jade.compile(input, {filename: './views/'+template})(options);
+    input = data.replace('extends '+layout+'\n','');
+    rendered = jade.compile(input, {filename: file_name})(options);
+    console.log(rendered);
     ret = JSON.stringify({'view': template, 'src': rendered});
     self.emit('done', ret);
   });
@@ -18,4 +30,7 @@ var partial_renderer = function(template, options){
 
 util.inherits(partial_renderer, events.EventEmitter);
 
-exports.partial = partial_renderer;
+exports.render_partial = function(template, options, layout){
+  console.log('Got Here');
+  return new partial_renderer(template, options, layout);
+};

@@ -2,7 +2,8 @@ var fs = require('fs')
   , jade = require('jade')
   , dateformat = require('dateformatter').format
   , path = require('path')
-  , partial = require('./helpers/partial_renderer').partial
+  , markx = require('markx')
+  , render_partial = require('./helpers/partial_renderer').render_partial
   , getter = require('./helpers/getter')
   ;
 /*
@@ -10,84 +11,76 @@ var fs = require('fs')
  */
 
 exports.index = function(req, res){
-  carousel_path = './public/images/carousel/';
-  fs.readdir(carousel_path, function(err, images){
-    // Strip out './public' from path
-    for (i=0; i<images.length; i++)
-      images[i] = carousel_path.substring(8) + images[i];
-    //choose = new chooser();
+  carousel_path = path.join('images','carousel');
+  console.log(carousel_path);
+  getter.get_all(carousel_path)
+  .on('done', function(imgs){
+    images = JSON.parse(imgs);
     getter.choose_bg().on('done', function(bg){ 
       options = { title: 'Charlotte Animal Rights - Home', active: 0, images: images, bg: bg };
-      if (req.xhr){
-        helper = new partial('index', options);
-        helper.on('done', function(ret){ res.json(ret); });
-      }
+      if (req.xhr)
+        render_partial('index', options)
+        .on('done', function(ret) { res.json(ret); });
       else
         res.render('index', options);
     });
+  })
+  .on('error', function(err){
+    console.log('Error: '+err);
+    res.send(500, 'Error');
   });
 };
 
 exports.about = function(req, res){
-  //choose = new chooser();
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - About', active: 1, bg: bg };
-    if (req.xhr){
-      helper = new partial('about', options);
-      helper.on('done', function(ret){ res.json(ret); });
-    }
+    if (req.xhr)
+        render_partial('about', options)
+        .on('done', function(ret) { res.json(ret); });
     else
       res.render('about', options);
   });
 };
 
 exports.contact = function(req, res){
-  //choose = new chooser();
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Contact', active: 2, bg: bg };
-    if (req.xhr){
-      helper = new partial('contact', options);
-      helper.on('done', function(ret){ res.json(ret); });
-    }
+    if (req.xhr)
+        render_partial('contact', options)
+        .on('done', function(ret) { res.json(ret); });
     else
       res.render('contact', options);
   });
 };
 
 exports.news = function(req, res){
-  //choose = new chooser();
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - News', active: 3, bg: bg };
-    if (req.xhr){
-      helper = new partial('news', options);
-      helper.on('done', function(ret){ res.json(ret); });
-    }
+    if (req.xhr)
+        render_partial('news', options)
+        .on('done', function(ret) { res.json(ret); });
     else
       res.render('news', options);
   });
 };
 
 exports.photos = function(req, res){
-  //choose = new chooser();
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Photos', active: 4, bg: bg };
-    if (req.xhr){
-      helper = new partial('photos', options);
-      helper.on('done', function(ret){ res.json(ret); });
-    }
+    if (req.xhr)
+        render_partial('photos', options)
+        .on('done', function(ret) { res.json(ret); });
     else
       res.render('photos', options);
   });
 };
 
 exports.links = function(req, res){
-  //choose = new chooser();
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg };
-    if (req.xhr){
-      helper = new partial('links', options);
-      helper.on('done', function(ret){ res.json(ret); });
-    }
+    if (req.xhr)
+        render_partial('links', options)
+        .on('done', function(ret) { res.json(ret); });
     else
       res.render('links', options);
   });
@@ -106,18 +99,17 @@ exports.admin = function(req, res){
 };
 
 exports.upload_image = function(req, res){
-  console.log(JSON.stringify(req.files));
-  console.log(JSON.stringify(req.body));
-  file_path = '';
+  //console.log(JSON.stringify(req.files));
+  //console.log(JSON.stringify(req.body));
+  dir = '';
   if (req.body.selection === 'photo')
-    file_path = 'photos';
+    dir = 'photos';
   else if (req.body.selection === 'carousel')
-    file_path = 'carousel';
+    dir = 'carousel';
   else if (req.body.selection === 'background')
-    file_path = 'background';
+    dir = 'background';
   else
     return res.send(500, 'An Error occurred.');
-
   // Change image name to UTC timestamp to prevent conflicts.
   file_name = new Date().getTime();
   switch(req.files.image.type)
@@ -140,8 +132,9 @@ exports.upload_image = function(req, res){
     default:
       return res.send(500, 'Unsupported Image Type!');
   } 
-    
-  fs.rename(req.files.image.path, './public/images/' + file_path +'/' + file_name + file_ext, function(err){
+  file_path = path.join(path.dirname(), 'public', 'images', dir, file_name+file_ext);
+
+  fs.rename(req.files.image.path, file_path, function(err){
     if (err){ 
       console.log('Error: '+err); 
       res.send(500, 'Upload Unsuccessful'); 
@@ -161,8 +154,9 @@ exports.upload_news = function(req, res){
     return;
   }
   // Change file name to UTC timestamp to prevent conflicts.
-  file_name = new Date().getTime();
-  fs.writeFile('./public/news/'+file_name+'.md', req.body.news, function(err){
+  file_name = new Date().getTime() + '.md';
+  file_path = path.join(path.dirname, 'public', 'news', file_name);
+  fs.writeFile(file_path, req.body.news, function(err){
     if (err) {
       console.log('Error: '+err);
       res.send(500, 'Error!');

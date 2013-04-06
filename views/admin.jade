@@ -28,7 +28,7 @@ block content
     form.upload.news(action="/admin/upload/news", method="post", enctype="multipart/form-data")
       .upload.news
         textarea.upload.news(name="news", rows="10", wrap="hard") 
-        input.upload.news.pull-right.upload-adjust(type="submit", value="Upload News Post", style="height:30px;")
+        input.upload.news.pull-right.margin-adjust(type="submit", value="Upload News Post", style="height:30px;")
         .input-append.date.datepicker.pull-right(data-date-format="yyyy-mm-dd", data-date=now)
           input.datestore(type="text", name="date", size="16", readonly)
           span.add-on.date-click
