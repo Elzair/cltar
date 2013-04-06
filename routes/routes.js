@@ -1,9 +1,9 @@
 var fs = require('fs')
   , jade = require('jade')
   , dateformat = require('dateformatter').format
+  , path = require('path')
   , partial = require('./helpers/partial_renderer').partial
-  , background = require('./helpers/background')
-  //, formidable = require('formidable')
+  , getter = require('./helpers/getter')
   ;
 /*
  * GET home page.
@@ -16,7 +16,7 @@ exports.index = function(req, res){
     for (i=0; i<images.length; i++)
       images[i] = carousel_path.substring(8) + images[i];
     //choose = new chooser();
-    background.choose().on('done', function(bg){ 
+    getter.choose_bg().on('done', function(bg){ 
       options = { title: 'Charlotte Animal Rights - Home', active: 0, images: images, bg: bg };
       if (req.xhr){
         helper = new partial('index', options);
@@ -30,7 +30,7 @@ exports.index = function(req, res){
 
 exports.about = function(req, res){
   //choose = new chooser();
-  background.choose().on('done', function(bg){
+  getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - About', active: 1, bg: bg };
     if (req.xhr){
       helper = new partial('about', options);
@@ -43,7 +43,7 @@ exports.about = function(req, res){
 
 exports.contact = function(req, res){
   //choose = new chooser();
-  background.choose().on('done', function(bg){
+  getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Contact', active: 2, bg: bg };
     if (req.xhr){
       helper = new partial('contact', options);
@@ -56,7 +56,7 @@ exports.contact = function(req, res){
 
 exports.news = function(req, res){
   //choose = new chooser();
-  background.choose().on('done', function(bg){
+  getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - News', active: 3, bg: bg };
     if (req.xhr){
       helper = new partial('news', options);
@@ -69,7 +69,7 @@ exports.news = function(req, res){
 
 exports.photos = function(req, res){
   //choose = new chooser();
-  background.choose().on('done', function(bg){
+  getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Photos', active: 4, bg: bg };
     if (req.xhr){
       helper = new partial('photos', options);
@@ -82,7 +82,7 @@ exports.photos = function(req, res){
 
 exports.links = function(req, res){
   //choose = new chooser();
-  background.choose().on('done', function(bg){
+  getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg };
     if (req.xhr){
       helper = new partial('links', options);
@@ -94,12 +94,12 @@ exports.links = function(req, res){
 };
 
 exports.backgrounds = function(req, res){
-  background.get_all().on('done', function(bgs){ res.json(bgs); });
+  getter.get_all('images/background').on('done', function(bgs){ res.json(bgs); });
 };
 
 exports.admin = function(req, res){
   now = dateformat('Y-m-d', new Date().getTime());
-  background.choose().on('done', function(bg){
+  getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload, bg: bg, now: now };
     res.render('admin', options);
   });
@@ -117,6 +117,7 @@ exports.upload_image = function(req, res){
     file_path = 'background';
   else
     return res.send(500, 'An Error occurred.');
+
   // Change image name to UTC timestamp to prevent conflicts.
   file_name = new Date().getTime();
   switch(req.files.image.type)

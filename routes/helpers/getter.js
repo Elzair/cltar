@@ -6,7 +6,7 @@ var fs = require('fs')
 
 // This function returns the relative URL of a
 // randomly chosen file in /public/images/backgrounds.
-function random_chooser(){
+function bg_chooser(){
   events.EventEmitter.call(this);
   var self = this;
   background_path = './public/images/background/';
@@ -21,14 +21,12 @@ function random_chooser(){
 
 // This function retrieves all the files in a given
 // subdirectory of public.
-function getter(p){
+function get_files(p){
   events.EventEmitter.call(this);
   var self = this;
   //background_path = './public/images/background/';
-  pp = path.join(__dirname, 'public');
-  ppp = path.join(pp, p);
-  fs.readdir(ppp, function(err, files){
-    console.log(ppp);
+  pp = path.join(path.dirname(), 'public', p);
+  fs.readdir(pp, function(err, files){
     // Strip './public' from paths
     for (i=0; i<files.length; i++)
      files[i] = path.join(p, files[i]);
@@ -38,15 +36,15 @@ function getter(p){
 }
 
 // All helper objects should inherit from EventEmitter.
-util.inherits(random_chooser, events.EventEmitter);
-util.inherits(getter, events.EventEmitter);
+util.inherits(bg_chooser, events.EventEmitter);
+util.inherits(get_files, events.EventEmitter);
 
 // Exports
 //
-exports.choose = function(){
-  return new random_chooser();
+exports.choose_bg = function(){
+  return new bg_chooser();
 };
 
 exports.get_all = function(p) {
-  return new getter(p);
+  return new get_files(p);
 };
