@@ -28,19 +28,30 @@ $(document).ready(function(){
       }
     });
   });
- 
+
+  // Open DatePicker when user clicks on calendar.
+  $('.date-click').click(function(e){
+    $('.datepicker').datepicker('show');
+  });
+  
+  // Close DatePicker when user selects date.
+  $('.datepicker').on('changeDate', function(ev){
+    $(this).datepicker('hide');
+  });
+
   // Submit other form via AJAX using jquery.form plugin 
   $('input.upload.news').click(function(e){
     e.preventDefault();
     $('p.upload.news').removeClass('error').hide();
+    // Validate input forms.
     if ($('textarea.upload.news').val() === ''){
       $('p.upload.news').addClass('error').text('You need to write something!').show();
       return false;
     }
-    if (isNan(Date.parse($('input.span2.datestore').val()))){
-      $('p.upload.news').addClass('error').text('Invalid Date!').show();
-      return false;
-    }
+    //if (isNan(Date.parse($('input.span2.datestore').val()))){
+    //  $('p.upload.news').addClass('error').text('Invalid Date!').show();
+    //  return false;
+    //}
     $('form.upload.news').ajaxSubmit({
       error: function(xhr){
         $('p.upload.news').addClass('error').text('Error uploading post!').show();

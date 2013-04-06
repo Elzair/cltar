@@ -29,9 +29,9 @@ block content
       .upload.news
         textarea.upload.news(name="news", rows="10", wrap="hard") 
         input.upload.news.pull-right.upload-adjust(type="submit", value="Upload News Post", style="height:30px;")
-        .input-append.date.pull-right#dp3(data-date-format="yyyy-mm-dd")
+        .input-append.date.datepicker.pull-right(data-date-format="yyyy-mm-dd", data-date=now)
           input.datestore(type="text", name="date", size="16", readonly)
-          span.add-on
+          span.add-on.date-click
             i.icon-calendar
     if upload == 2
       p.upload.news Post Successfully Uploaded

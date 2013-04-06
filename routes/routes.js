@@ -1,5 +1,6 @@
 var fs = require('fs')
   , jade = require('jade')
+  , dateformat = require('dateformatter').format
   , partial = require('./helpers/partial_renderer').partial
   , background = require('./helpers/background')
   //, formidable = require('formidable')
@@ -11,8 +12,8 @@ var fs = require('fs')
 exports.index = function(req, res){
   carousel_path = './public/images/carousel/';
   fs.readdir(carousel_path, function(err, images){
+    // Strip out './public' from path
     for (i=0; i<images.length; i++)
-      // Strip out './public' from path
       images[i] = carousel_path.substring(8) + images[i];
     //choose = new chooser();
     background.choose().on('done', function(bg){ 
@@ -69,7 +70,7 @@ exports.news = function(req, res){
 exports.photos = function(req, res){
   //choose = new chooser();
   background.choose().on('done', function(bg){
-    options = { title: 'Charlotte Animal Rights - Photos', active: 4, bg: bg }
+    options = { title: 'Charlotte Animal Rights - Photos', active: 4, bg: bg };
     if (req.xhr){
       helper = new partial('photos', options);
       helper.on('done', function(ret){ res.json(ret); });
@@ -82,13 +83,13 @@ exports.photos = function(req, res){
 exports.links = function(req, res){
   //choose = new chooser();
   background.choose().on('done', function(bg){
-    options = { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg }
+    options = { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg };
     if (req.xhr){
       helper = new partial('links', options);
       helper.on('done', function(ret){ res.json(ret); });
     }
     else
-      res.render('links', { title: 'Charlotte Animal Rights - External Links', active: 5, bg: bg });
+      res.render('links', options);
   });
 };
 
@@ -97,8 +98,10 @@ exports.backgrounds = function(req, res){
 };
 
 exports.admin = function(req, res){
+  now = dateformat('Y-m-d', new Date().getTime());
   background.choose().on('done', function(bg){
-    res.render('admin', { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload, bg: bg });
+    options = { title: 'Charlotte Animal Rights - Administrative', active: -1, upload: req.query.upload, bg: bg, now: now };
+    res.render('admin', options);
   });
 };
 
@@ -106,11 +109,11 @@ exports.upload_image = function(req, res){
   console.log(JSON.stringify(req.files));
   console.log(JSON.stringify(req.body));
   file_path = '';
-  if (req.body.selection == 'photo')
+  if (req.body.selection === 'photo')
     file_path = 'photos';
-  else if (req.body.selection == 'carousel')
+  else if (req.body.selection === 'carousel')
     file_path = 'carousel';
-  else if (req.body.selection == 'background')
+  else if (req.body.selection === 'background')
     file_path = 'background';
   else
     return res.send(500, 'An Error occurred.');
@@ -134,13 +137,13 @@ exports.upload_image = function(req, res){
       file_ext = '.bmp';
       break;
     default:
-      return res.send(500, 'Unsupported Image Type!')
+      return res.send(500, 'Unsupported Image Type!');
   } 
     
   fs.rename(req.files.image.path, './public/images/' + file_path +'/' + file_name + file_ext, function(err){
     if (err){ 
       console.log('Error: '+err); 
-      res.send(500, 'Upload Unsuccessful') 
+      res.send(500, 'Upload Unsuccessful'); 
     }
     if (req.xhr)
       res.send(200, 'Upload Successful');
@@ -151,7 +154,7 @@ exports.upload_image = function(req, res){
 
 exports.upload_news = function(req, res){
   console.log(JSON.stringify(req.body));
-  if ((req.body.news == '') || isNaN(Date.parse(req.body.date))){
+  if ((req.body.news === '') || isNaN(Date.parse(req.body.date))){
     console.log('Invalid Parameters');
     res.send(500, 'Invalid Parameters!');
     return;
