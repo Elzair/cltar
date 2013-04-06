@@ -11,6 +11,10 @@ function bg_chooser(){
   var self = this;
   background_path = './public/images/background/';
   fs.readdir(background_path, function(err, images){
+    if (err){
+      self.emit('error', err);
+      return;
+    }
     // Get random background image
     i = Math.floor(Math.random()*images.length);
     // Strip './public' from paths
@@ -24,10 +28,12 @@ function bg_chooser(){
 function get_files(p){
   events.EventEmitter.call(this);
   var self = this;
-  //background_path = './public/images/background/';
   pp = path.join(path.dirname(), 'public', p);
   fs.readdir(pp, function(err, files){
-    // Strip './public' from paths
+    if (err){
+      self.emit('error', err);
+      return;
+    }
     for (i=0; i<files.length; i++)
      files[i] = path.join(p, files[i]);
     out = JSON.stringify(files);
