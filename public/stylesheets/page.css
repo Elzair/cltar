@@ -134,6 +134,9 @@ img.tall {
 .error {
   color: #f00;
 }
+textarea.upload {
+  width: 98%;
+}
 .title {
   animation-duration: 3s;
   animation-name: slidein;

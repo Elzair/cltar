@@ -37,6 +37,7 @@ app.get('/links', routes.links);
 app.get('/backgrounds', routes.backgrounds);
 app.get('/admin', auth, routes.admin);
 app.post('/admin/upload/image', auth, routes.upload_image);
+app.post('/admin/upload/news', auth, routes.upload_news);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

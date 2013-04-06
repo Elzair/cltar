@@ -138,11 +138,35 @@ exports.upload_image = function(req, res){
   } 
     
   fs.rename(req.files.image.path, './public/images/' + file_path +'/' + file_name + file_ext, function(err){
-    if (err){ console.log('Error: '+err); res.send(500, 'Upload Unsuccessful') };
+    if (err){ 
+      console.log('Error: '+err); 
+      res.send(500, 'Upload Unsuccessful') 
+    }
     if (req.xhr)
-      return res.send(200, 'Upload Successful');
+      res.send(200, 'Upload Successful');
     else
-      return res.redirect('/admin?upload=1')
+      res.redirect('/admin?upload=1');
+  });
+};
+
+exports.upload_news = function(req, res){
+  console.log(JSON.stringify(req.body));
+  if ((req.body.news == '') || isNaN(Date.parse(req.body.date))){
+    console.log('Invalid Parameters');
+    res.send(500, 'Invalid Parameters!');
+    return;
+  }
+  // Change file name to UTC timestamp to prevent conflicts.
+  file_name = new Date().getTime();
+  fs.writeFile('./public/news/'+file_name+'.md', req.body.news, function(err){
+    if (err) {
+      console.log('Error: '+err);
+      res.send(500, 'Error!');
+    }
+    if (req.xhr)
+      res.send(200, 'Upload Successful');
+    else
+      res.redirect('/admin?upload=2');
   });
 };
 
