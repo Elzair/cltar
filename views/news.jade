@@ -2,3 +2,6 @@ extends layout
 block content
   .content.news
     p No news is good news!
+    each post in news
+      section.post
+        !{post}

@@ -25,17 +25,20 @@ function bg_chooser(){
 
 // This function retrieves all the files in a given
 // subdirectory of public and returns them in JSON format.
-function get_files(p){
+function get_files(p, options){
+  options.full_path = options.full_path || false;
+  pp = path.join(path.dirname(), 'public', p);
+  ppp = options.full_path ? pp : p;
   events.EventEmitter.call(this);
   var self = this;
-  pp = path.join(path.dirname(), 'public', p);
   fs.readdir(pp, function(err, files){
     if (err){
       self.emit('error', err);
       return;
     }
-    for (i=0; i<files.length; i++)
-     files[i] = path.join(p, files[i]);
+    for (i=0; i<files.length; i++){
+      files[i] = path.join(ppp, files[i]);
+    }
     out = JSON.stringify(files);
     self.emit('done', out);
   });
@@ -51,6 +54,7 @@ exports.choose_bg = function(){
   return new bg_chooser();
 };
 
-exports.get_all = function(p) {
-  return new get_files(p);
+exports.get_all = function(p, options) {
+  options = options || {full_path: false};
+  return new get_files(p, options);
 };

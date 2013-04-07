@@ -54,15 +54,12 @@ $(document).ready(function(){
     //}
     $('form.upload.news').ajaxSubmit({
       error: function(xhr){
-        $('p.upload.news').addClass('error').text('Error uploading post!').show();
+        $('p.upload.news').addClass('error').text('Error uploading post!' + JSON.stringify(xhr)).show();
       },
       success: function(res){
         $('p.upload.news').text('Post successfully uploaded!').show();
+        $('textarea.upload.news').val(''); // Blank input post on upload
       }
     });
   });
-  // Event fires when user clicks "Upload News Post" button
-  //$('input[type="submit"].upload.news').click(function(e){
-  //  e.preventDefault();
-  //});
 });
