@@ -1,4 +1,10 @@
 extends layout
 block content
   .content.photos
-    p No Photos yet.
+    ul.thumbnails
+      each photo in photos
+        li.span4.thumb-img        
+          a.thumbnail.thumb-img(href=photo)
+            img.thumb-img(src=photo, alt="")
+    script(type="text/javascript", src="/javascripts/photos.js")
+    
