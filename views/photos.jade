@@ -1,10 +1,19 @@
 extends layout
 block content
+  link(rel='stylesheet', href='/bootstrap/css/bootstrap-lightbox.min.css')
+  script(type='text/javascript', src='/bootstrap/js/bootstrap-lightbox.min.js')
   .content.photos.current
     ul.thumbnails
-      each photo in photos
+      each photo, i in photos
         li.span4.thumb-img        
-          a.thumbnail.thumb-img(href=photo)
+          - var lid = 'lightbox'+i;
+          - var lnk = '#'+lid;
+          a.thumbnail.thumb-img(href=lnk, data-toggle="lightbox")
             img.thumb-img(src=photo, alt="")
-    script(type="text/javascript", src="/javascripts/photos.js")
+          .lightbox.hide.fade(id=lid, tabindex="-1", role="dialog", aria-hidden="true")
+            .lightbox-header
+              button.close(type="button", data-dismiss="lightbox", aria-hidden="true") &times;
+            .lightbox-content
+              img(src=photo, alt="")
+
     

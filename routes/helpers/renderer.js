@@ -21,6 +21,7 @@ function partial_renderer(template, options, layout){
     }
     // Stripping this makes Jade render only the template and not the layout.
     input = data.replace('extends '+layout+'\n','');
+    console.log(input);
     rendered = jade.compile(input, {filename: file_name})(options);
     ret = JSON.stringify({'view': template, 'src': rendered});
     self.emit('done', ret);
