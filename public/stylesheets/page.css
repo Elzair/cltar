@@ -152,6 +152,12 @@ textarea.upload {
 .page-error {
   display: none;
 }
+.odd {
+  background-color: #c8c8c8;
+}
+.even {
+  background-color: #dcdcdc;
+}
 .title {
   animation-duration: 3s;
   animation-name: slidein;

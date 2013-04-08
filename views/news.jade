@@ -2,6 +2,9 @@ extends layout
 block content
   .content.news.current
     p No news is good news!
+    - var alt = 0
     each post in news
-      section.post
-        !{post}
+      - alt = 1 - alt;
+      .well(class=alt ? 'odd' : 'even')
+        section.post
+          !{post}

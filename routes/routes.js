@@ -163,7 +163,7 @@ exports.upload_image = function(req, res){
 };
 
 exports.upload_news = function(req, res){
-  if ((req.body.news === '') || isNaN(Date.parse(req.body.date))){
+  if ((req.body.news === '') /*|| isNaN(Date.parse(req.body.date))*/){
     res.send(500, 'Invalid Parameters!');
     return;
   }
