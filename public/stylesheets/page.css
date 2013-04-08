@@ -153,10 +153,10 @@ textarea.upload {
   display: none;
 }
 .odd {
-  background-color: #c8c8c8;
+  background-color: #dcdcdc;
 }
 .even {
-  background-color: #dcdcdc;
+  background-color: #c8c8c8;
 }
 .title {
   animation-duration: 3s;
