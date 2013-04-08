@@ -9,6 +9,10 @@ var fs = require('fs')
  * GET home page.
  */
 
+exports.index = function(req, res){
+  res.redirect('/home');
+};
+
 exports.home = function(req, res){
   carousel_path = path.join('images','carousel');
   getter.get_all(carousel_path)

@@ -17,9 +17,29 @@ $(document).ready(function(){
     short_url = $(this).attr('href'); // This matches the URL with a menu item.
     url = this.href;
 
+    // Highlight the correct menubar item.
+    $('li.nav-item').each(function(aindex){
+      $(this).removeClass('active');
+      $(this).children().each(function(bindex){
+        if ($(this).attr('href') === short_url){
+          $(this).parent().addClass('active');
+        }
+      });
+    });
+
     // Hide current page
     $('div.content.current').removeClass('current').hide();
         
+    // To recycle our garbage, only load a new page if a current copy
+    // is not already in the DOM
+    div_class = short_url.replace('/','');
+    if ($('div.content.'+div_class).length !== 0){
+      $('div.content.'+div_class).addClass('current').show();
+      history.pushState({url: url, div_class: div_class}, '', url);
+      e.preventDefault();
+      return;
+    }
+
     // Make AJAX request to get new page content.
     $.ajax({
       url: url, 
@@ -37,15 +57,6 @@ $(document).ready(function(){
         div_class = JSON.parse(data)['view']; // server returns view name
         history.pushState({url: url, div_class: div_class}, '', url); 
         
-        // Highlight the correct menubar item.
-        $('li.nav-item').each(function(aindex){
-          $(this).removeClass('active');
-          $(this).children().each(function(bindex){
-            if ($(this).attr('href') === short_url){
-              $(this).parent().addClass('active');
-            }
-          });
-        });
       },
       error: function(err){
         console.log(JSON.stringify(err));
