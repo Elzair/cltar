@@ -1,7 +1,6 @@
 extends layout
 block content
   .content.news.current
-    p No news is good news!
     - var alt = 0
     each post in news
       - alt = 1 - alt;
