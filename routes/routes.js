@@ -10,22 +10,22 @@ var fs = require('fs')
  */
 
 exports.index = function(req, res){
-  res.redirect('/home');
+  res.redirect('/main');
 };
 
-exports.home = function(req, res){
+exports.main = function(req, res){
   carousel_path = path.join('images','carousel');
   getter.get_all(carousel_path)
   .on('done', function(data){
     images = JSON.parse(data);
     getter.choose_bg().on('done', function(bg){ 
-      options = { title: 'Charlotte Animal Rights - Home', 
+      options = { title: 'Charlotte Animal Rights - Main', 
         active: 0, images: images, bg: bg };
       if (req.xhr)
-        renderer.render_partial('home', options)
+        renderer.render_partial('main', options)
         .on('done', function(ret) { res.json(ret); });
       else
-        res.render('home', options);
+        res.render('main', options);
     });
   })
   .on('error', function(err){

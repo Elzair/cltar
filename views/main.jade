@@ -1,7 +1,7 @@
 extends layout
 block content
-  .content.home.current
-    script(type='text/javascript', src='/javascripts/home.js')
+  .content.main.current
+    script(type='text/javascript', src='/javascripts/main.js')
     .carousel.slide#myCarousel(data-interval="5000")
       ol.carousel-indicators
         each image, i in images
