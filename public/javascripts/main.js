@@ -11,15 +11,15 @@ $(document).ready(function(){
   $('a').not('external').on('click', function(e){
     short_url = $(this).attr('href'); // This matches the URL with a menu item.
     url = this.href;
+
+    // Hide current page
+    $('div.content.current').removeClass('current').hide();
         
     // Make AJAX request to get page content.
     $.ajax({
       url: url, 
       dataType: 'json',
       success: function(data){
-
-        // Hide current page
-        $('div.content.current').removeClass('current').hide();
 
         // Choose random background image
         i = Math.floor(Math.random()*backgrounds.length);
@@ -29,18 +29,7 @@ $(document).ready(function(){
         $('.page-content').append(JSON.parse(data)['src']);
 
         // Update the browser's URL
-        //console.log(JSON.stringify({url:url,div_class:div_class}));
-        //history.pushState({url: url, div_class: div_class}, '', url);
-        // Get list of classes of current page
-        //classes = $('div.content.current').attr('class').split(' ');
-        //div_class = '';
-        //for (i=0; i<classes.length; i++){
-        //  if ((classes[i] !== 'content') && (classes[i] !== 'current')){
-        //    div_class = classes[i];
-        //    console.log(div_class);
-        //  }
-        //}
-        div_class = JSON.parse(data)['view'];
+        div_class = JSON.parse(data)['view']; // server returns view name
         history.pushState({url: url, div_class: div_class}, '', url); 
         
         // Highlight the correct menubar item.
@@ -53,14 +42,19 @@ $(document).ready(function(){
           });
         });
       },
+      error: function(err){
+        $('li.nav-item').removeClass('active');
+        $('div.content.page-error').show();
+      }
     });
     // Prevent browser from following the clicked link.
     e.preventDefault();
   });
   window.addEventListener('popstate', function(ev){
-    url = document.URL;
-    console.log('EV State: '+JSON.stringify(ev.state));
+    // ev.state is null when the user loads the page for the first time.
+    // This snippet pushes the first page onto the history stack.
     if (ev.state === null){
+      url = document.URL; // Get URL of first page
       classes = $('div.content.current').attr('class').split(' ');
       div_class = '';
       for (i=0; i<classes.length; i++){
@@ -71,9 +65,13 @@ $(document).ready(function(){
       }
       history.pushState({url: url, div_class: div_class}, '', url);
     }
+    // Otherwise, show the div corresponding to the previous or next page     
+    // when the user presses the back or forward buttons in their browser.
     else{
+      // Show correct content div.
       $('div.content.current').removeClass('current').hide();
       $('div.content.'+ev.state.div_class).addClass('current').show();
+      // Highlight correct menu item.
       $('li.nav-item.active').removeClass('active');
       $('li.nav-item'+ev.state.div_class).addClass('active');
     }

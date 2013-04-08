@@ -149,6 +149,9 @@ textarea.upload {
   min-height: 200px;
   max-height: 200px;
 }
+.page-error {
+  display: none;
+}
 .title {
   animation-duration: 3s;
   animation-name: slidein;
