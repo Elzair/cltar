@@ -9,7 +9,7 @@ var fs = require('fs')
  * GET home page.
  */
 
-exports.index = function(req, res){
+exports.home = function(req, res){
   carousel_path = path.join('images','carousel');
   getter.get_all(carousel_path)
   .on('done', function(data){
@@ -18,10 +18,10 @@ exports.index = function(req, res){
       options = { title: 'Charlotte Animal Rights - Home', 
         active: 0, images: images, bg: bg };
       if (req.xhr)
-        renderer.render_partial('index', options)
+        renderer.render_partial('home', options)
         .on('done', function(ret) { res.json(ret); });
       else
-        res.render('index', options);
+        res.render('home', options);
     });
   })
   .on('error', function(err){
