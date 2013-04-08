@@ -9,8 +9,7 @@ function incrementcounter()
   var num;
   var str;
   var th;
-  for (var i = 0; i < numbers.length; ++i) {
-    //console.log(i);
+  for (i = 0; i < numbers.length; i++) {
     counts[i] += rate[i];
     str = "";
     num = Math.round(counts[i]);
@@ -31,12 +30,13 @@ var intervalid = 0;
 function initcounter()
 {
   var disp;
-  for (var i = 0; i < numbers.length; ++i) {
+  for (i = 0; i < numbers.length; i++) {
     if (numbers[i] == 0) {
       disp = "none";
     } else {
       disp = "block";
     }
+    console.log(i);
     document.getElementById("counter" + i).style.display = disp;
     rate[i] = numbers[i] / 365 / 24 / 60 / 60 / persecond;
     counts[i] = 0;

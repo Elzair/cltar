@@ -9,13 +9,18 @@ $(document).ready(function(){
   });
   // Load pages via AJAX.
   $('a').not('external').on('click', function(e){
+    // This prevents the system from retrieving dud links.
+    if ($(this).attr('href') === '#')
+      return;
+    
+    // Get short and long forms of the requested URL.
     short_url = $(this).attr('href'); // This matches the URL with a menu item.
     url = this.href;
 
     // Hide current page
     $('div.content.current').removeClass('current').hide();
         
-    // Make AJAX request to get page content.
+    // Make AJAX request to get new page content.
     $.ajax({
       url: url, 
       dataType: 'json',
@@ -43,6 +48,7 @@ $(document).ready(function(){
         });
       },
       error: function(err){
+        console.log(JSON.stringify(err));
         $('li.nav-item').removeClass('active');
         $('div.content.page-error').show();
       }

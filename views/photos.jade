@@ -1,7 +1,5 @@
 extends layout
 block content
-  link(rel='stylesheet', href='/bootstrap/css/bootstrap-lightbox.min.css')
-  script(type='text/javascript', src='/bootstrap/js/bootstrap-lightbox.min.js')
   .content.photos.current
     ul.thumbnails
       each photo, i in photos
@@ -15,5 +13,7 @@ block content
               button.close(type="button", data-dismiss="lightbox", aria-hidden="true") &times;
             .lightbox-content
               img(src=photo, alt="")
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-lightbox.min.css')
+    script(type='text/javascript', src='/bootstrap/js/bootstrap-lightbox.min.js')
 
     
