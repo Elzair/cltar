@@ -14,4 +14,5 @@ Dependencies
 * [jQuery 1.9.1](http://jquery.com)
 * [Twitter Bootstrap 2.3.1](http://twitter.github.io/bootstrap/index.html)
 * [Bootstrap Datepicker](https://github.com/eternicode/bootstrap-datepicker)
+* [Bootstrap Lightbox](http://jbutz.github.io/bootstrap-lightbox/)
 * [ADAPTT Animal Kill Counter](http://www.adaptt.org/killcounter.html)
