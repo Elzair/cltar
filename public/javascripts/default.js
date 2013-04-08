@@ -59,7 +59,6 @@ $(document).ready(function(){
         
       },
       error: function(err){
-        console.log(JSON.stringify(err));
         $('li.nav-item').removeClass('active');
         $('div.content.page-error').show();
       }
@@ -77,7 +76,6 @@ $(document).ready(function(){
       for (i=0; i<classes.length; i++){
         if ((classes[i] !== 'content') && (classes[i] !== 'current')){
           div_class = classes[i];
-          console.log(div_class);
         }
       }
       history.pushState({url: url, div_class: div_class}, '', url);

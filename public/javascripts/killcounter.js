@@ -36,7 +36,6 @@ function initcounter()
     } else {
       disp = "block";
     }
-    console.log(i);
     document.getElementById("counter" + i).style.display = disp;
     rate[i] = numbers[i] / 365 / 24 / 60 / 60 / persecond;
     counts[i] = 0;

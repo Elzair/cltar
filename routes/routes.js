@@ -65,8 +65,9 @@ exports.news = function(req, res){
       // Get contents of all files
       urls = JSON.parse(data);
       news = {};
-      for (i=0; i<urls.length; i++){console.log(urls[i]);
-        news[i] = fs.readFileSync(urls[i], 'utf8');}
+      for (i=0; i<urls.length; i++){
+        news[i] = fs.readFileSync(urls[i], 'utf8');
+      }
       options = { title: 'Charlotte Animal Rights - News', 
         active: 3, bg: bg, news: news };
       if (req.xhr)
