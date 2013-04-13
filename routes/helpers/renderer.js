@@ -9,7 +9,8 @@ var fs = require('fs')
 // This function renders only the Jade template passed to it
 // without any layout.
 function partial_renderer(template, options, layout){
-  layout = layout || 'layout'; // name of layout to strip
+  //layout = layout || 'layout'; // name of layout to strip
+  options.partial = true;
   events.EventEmitter.call(this);
   var self = this;
   view_path = path.join(path.dirname(), 'views', template + '.jade');
@@ -20,7 +21,8 @@ function partial_renderer(template, options, layout){
       return;
     }
     // Stripping this makes Jade render only the template and not the layout.
-    input = data.replace('extends '+layout+'\n','');
+    //input = data.replace('extends '+layout+'\n','');
+    input = data;
     rendered = jade.compile(input, {filename: file_name})(options);
     ret = JSON.stringify({'view': template, 'src': rendered});
     self.emit('done', ret);

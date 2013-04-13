@@ -20,7 +20,7 @@ exports.main = function(req, res){
     images = JSON.parse(data);
     getter.choose_bg().on('done', function(bg){ 
       options = { title: 'Charlotte Animal Rights - Main', 
-        active: 0, images: images, bg: bg };
+        active: 0, images: images, bg: bg, partial: false };
       if (req.xhr)
         renderer.render_partial('main', options)
         .on('done', function(ret) { res.json(ret); });
@@ -36,7 +36,7 @@ exports.main = function(req, res){
 exports.about = function(req, res){
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - About', 
-      active: 1, bg: bg };
+      active: 1, bg: bg, partial: false };
     if (req.xhr)
       renderer.render_partial('about', options)
       .on('done', function(ret) { res.json(ret); });
@@ -48,7 +48,7 @@ exports.about = function(req, res){
 exports.contact = function(req, res){
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Contact', 
-      active: 2, bg: bg };
+      active: 2, bg: bg, partial: false };
     if (req.xhr)
       renderer.render_partial('contact', options)
       .on('done', function(ret) { res.json(ret); });
@@ -69,7 +69,7 @@ exports.news = function(req, res){
         news[i] = fs.readFileSync(urls[i], 'utf8');
       }
       options = { title: 'Charlotte Animal Rights - News', 
-        active: 3, bg: bg, news: news };
+        active: 3, bg: bg, news: news, partial: false };
       if (req.xhr)
         renderer.render_partial('news', options)
         .on('done', function(ret) { res.json(ret); });
@@ -86,7 +86,7 @@ exports.photos = function(req, res){
     .on('done', function(data){
       photos = JSON.parse(data);
       options = { title: 'Charlotte Animal Rights - Photos', 
-        active: 4, bg: bg, photos: photos };
+        active: 4, bg: bg, photos: photos, partial: false };
       if (req.xhr)
         renderer.render_partial('photos', options)
         .on('done', function(ret) { res.json(ret); });
@@ -99,7 +99,7 @@ exports.photos = function(req, res){
 exports.links = function(req, res){
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - External Links', 
-      active: 5, bg: bg };
+      active: 5, bg: bg, partial: false };
     if (req.xhr)
       renderer.render_partial('links', options)
       .on('done', function(ret) { res.json(ret); });
@@ -116,7 +116,7 @@ exports.admin = function(req, res){
   now = dateformat('Y-m-d', new Date().getTime());
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Administrative', 
-      active: -1, upload: req.query.upload, bg: bg, now: now };
+      active: -1, upload: req.query.upload, bg: bg, now: now, partial: false };
     res.render('admin', options);
   });
 };
