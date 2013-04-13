@@ -1,7 +1,7 @@
 .masthead
   h3.muted.title Charlotte Animal Rights
   .navbar
-    .navbar-inner
+    .navbar-inner.hidden-phone
       .container
         ul.nav
           if active == 0
@@ -62,9 +62,6 @@
           else
             li.nav-item.contact
               a.nav-link(href="/contact") Contact
-  .navbar.visible-phone
-    .navbar-inner
-      .container
         ul.nav
           if active == 3
             li.active.nav-item.news
