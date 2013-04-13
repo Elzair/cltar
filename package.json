@@ -1,6 +1,6 @@
 {
   "name": "cltar",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "private": true,
   "scripts": {
     "start": "PORT=80 nodemon app.js"
