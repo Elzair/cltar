@@ -19,8 +19,8 @@ exports.main = function(req, res){
   .on('done', function(data){
     images = JSON.parse(data);
     getter.choose_bg().on('done', function(bg){ 
-      options = { title: 'Charlotte Animal Rights - Main', 
-        active: 0, images: images, bg: bg, partial: false };
+      options = { title: 'Charlotte Animal Rights - Main', active: 0,  
+        images: images, bg: bg, partial: false, now: new Date() };
       if (req.xhr){
         renderer.render_partial('main', options)
         .on('done', function(ret) { res.json(ret); });
@@ -37,8 +37,8 @@ exports.main = function(req, res){
 
 exports.about = function(req, res){
   getter.choose_bg().on('done', function(bg){
-    options = { title: 'Charlotte Animal Rights - About', 
-      active: 1, bg: bg, partial: false };
+    options = { title: 'Charlotte Animal Rights - About', active: 1,
+      bg: bg, partial: false, now: new Date() };
     if (req.xhr){
       renderer.render_partial('about', options)
       .on('done', function(ret) { res.json(ret); });
@@ -51,8 +51,8 @@ exports.about = function(req, res){
 
 exports.contact = function(req, res){
   getter.choose_bg().on('done', function(bg){
-    options = { title: 'Charlotte Animal Rights - Contact', 
-      active: 2, bg: bg, partial: false };
+    options = { title: 'Charlotte Animal Rights - Contact', active: 2,
+      bg: bg, partial: false, now: new Date() };
     if (req.xhr){
       renderer.render_partial('contact', options)
       .on('done', function(ret) { res.json(ret); });
@@ -74,8 +74,8 @@ exports.news = function(req, res){
       for (i=0; i<urls.length; i++){
         news[i] = fs.readFileSync(urls[i], 'utf8');
       }
-      options = { title: 'Charlotte Animal Rights - News', 
-        active: 3, bg: bg, news: news, partial: false };
+      options = { title: 'Charlotte Animal Rights - News', active: 3,
+        bg: bg, news: news, partial: false, now: new Date() };
       if (req.xhr){
         renderer.render_partial('news', options)
         .on('done', function(ret) { res.json(ret); });
@@ -87,8 +87,8 @@ exports.news = function(req, res){
     .on('error', function(err){
       news = [];
       news[0] = 'No news yet!';
-      options = { title: 'Charlotte Animal Rights - News', 
-        active: 3, bg: bg, news: news, partial: false };
+      options = { title: 'Charlotte Animal Rights - News', active: 3,
+        bg: bg, news: news, partial: false, now: new Date() };
       if (req.xhr){
         renderer.render_partial('news', options)
         .on('done', function(ret) { res.json(ret); });
@@ -106,8 +106,8 @@ exports.photos = function(req, res){
     getter.get_all(photo_path)
     .on('done', function(data){
       photos = JSON.parse(data);
-      options = { title: 'Charlotte Animal Rights - Photos', 
-        active: 4, bg: bg, photos: photos, partial: false };
+      options = { title: 'Charlotte Animal Rights - Photos', active: 4,  
+        bg: bg, photos: photos, partial: false, now: new Date() };
       if (req.xhr){
         renderer.render_partial('photos', options)
         .on('done', function(ret) { res.json(ret); });
@@ -121,8 +121,8 @@ exports.photos = function(req, res){
 
 exports.links = function(req, res){
   getter.choose_bg().on('done', function(bg){
-    options = { title: 'Charlotte Animal Rights - External Links', 
-      active: 5, bg: bg, partial: false };
+    options = { title: 'Charlotte Animal Rights - External Links', active: 5,
+      bg: bg, partial: false };
     if (req.xhr){
       renderer.render_partial('links', options)
       .on('done', function(ret) { res.json(ret); });
