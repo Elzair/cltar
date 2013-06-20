@@ -21,11 +21,13 @@ exports.main = function(req, res){
     getter.choose_bg().on('done', function(bg){ 
       options = { title: 'Charlotte Animal Rights - Main', 
         active: 0, images: images, bg: bg, partial: false };
-      if (req.xhr)
+      if (req.xhr){
         renderer.render_partial('main', options)
         .on('done', function(ret) { res.json(ret); });
-      else
+      }
+      else{
         res.render('main', options);
+      }
     });
   })
   .on('error', function(err){
@@ -37,11 +39,13 @@ exports.about = function(req, res){
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - About', 
       active: 1, bg: bg, partial: false };
-    if (req.xhr)
+    if (req.xhr){
       renderer.render_partial('about', options)
       .on('done', function(ret) { res.json(ret); });
-    else
+    }
+    else{
       res.render('about', options);
+    }
   });
 };
 
@@ -49,11 +53,13 @@ exports.contact = function(req, res){
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - Contact', 
       active: 2, bg: bg, partial: false };
-    if (req.xhr)
+    if (req.xhr){
       renderer.render_partial('contact', options)
       .on('done', function(ret) { res.json(ret); });
-    else
+    }
+    else{
       res.render('contact', options);
+    }
   });
 };
 
@@ -83,11 +89,13 @@ exports.news = function(req, res){
       news[0] = 'No news yet!';
       options = { title: 'Charlotte Animal Rights - News', 
         active: 3, bg: bg, news: news, partial: false };
-      if (req.xhr)
+      if (req.xhr){
         renderer.render_partial('news', options)
         .on('done', function(ret) { res.json(ret); });
-      else
+      }
+      else{
         res.render('news', options); 
+      }
     });
   });
 };
@@ -100,11 +108,13 @@ exports.photos = function(req, res){
       photos = JSON.parse(data);
       options = { title: 'Charlotte Animal Rights - Photos', 
         active: 4, bg: bg, photos: photos, partial: false };
-      if (req.xhr)
+      if (req.xhr){
         renderer.render_partial('photos', options)
         .on('done', function(ret) { res.json(ret); });
-      else
+      }
+      else{
         res.render('photos', options);
+      }
     });
   });
 };
@@ -113,11 +123,13 @@ exports.links = function(req, res){
   getter.choose_bg().on('done', function(bg){
     options = { title: 'Charlotte Animal Rights - External Links', 
       active: 5, bg: bg, partial: false };
-    if (req.xhr)
+    if (req.xhr){
       renderer.render_partial('links', options)
       .on('done', function(ret) { res.json(ret); });
-    else
+    }
+    else{
       res.render('links', options);
+    }
   });
 };
 
@@ -136,14 +148,18 @@ exports.admin = function(req, res){
 
 exports.upload_image = function(req, res){
   dir = '';
-  if (req.body.selection === 'photo')
+  if (req.body.selection === 'photo'){
     dir = 'photos';
-  else if (req.body.selection === 'carousel')
+  }
+  else if (req.body.selection === 'carousel'){
     dir = 'carousel';
-  else if (req.body.selection === 'background')
+  }
+  else if (req.body.selection === 'background'){
     dir = 'background';
-  else
+  }
+  else{
     return res.send(500, 'An Error occurred.');
+  }
   // Change image name to UTC timestamp to prevent conflicts.
   file_name = new Date().getTime();
   switch(req.files.image.type)
@@ -173,15 +189,17 @@ exports.upload_image = function(req, res){
     if (err){ 
       res.send(500, 'Upload Unsuccessful'); 
     }
-    if (req.xhr)
+    if (req.xhr){
       res.send(200, 'Upload Successful');
-    else
+    }
+    else{
       res.redirect('/admin?upload=1');
+    }
   });
 };
 
 exports.upload_news = function(req, res){
-  if ((req.body.news === '') /*|| isNaN(Date.parse(req.body.date))*/){
+  if ((req.body.news === '')){
     res.send(500, 'Invalid Parameters!');
     return;
   }
@@ -196,10 +214,12 @@ exports.upload_news = function(req, res){
         res.send(500, 'Error!');
         return;
       }
-      if (req.xhr)
+      if (req.xhr){
         res.send(200, 'Upload Successful');
-      else
+      }
+      else{
         res.redirect('/admin?upload=2');
+      }
     });
   })
   .on('error', function(err){
