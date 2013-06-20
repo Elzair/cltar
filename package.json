@@ -11,5 +11,13 @@
     "stylus": "*",
     "markx": "*",
     "dateformatter": "*"
+  },
+  "subdomain": "cltar",
+  "domains": [
+    "charlotte-animal-rights.org",
+    "www.charlotte-animal-rights.org"
+  ],
+  "engines": {
+    "node": "0.8.x"
   }
 }
