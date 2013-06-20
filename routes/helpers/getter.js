@@ -31,16 +31,24 @@ function get_files(p, options){
   ppp = options.full_path ? pp : p;
   events.EventEmitter.call(this);
   var self = this;
-  fs.readdir(pp, function(err, files){
-    if (err){
-      self.emit('error', err);
+  fs.exists(pp, function(exists){
+    if (exists){
+      fs.readdir(pp, function(err, files){
+        if (err){
+          self.emit('error', err);
+          return;
+        }
+        for (i=0; i<files.length; i++){
+          files[i] = path.join(ppp, files[i]);
+        }
+        out = JSON.stringify(files);
+        self.emit('done', out);
+      });
+    }
+    else {
+      self.emit('error', 'Directory does not exist!');
       return;
     }
-    for (i=0; i<files.length; i++){
-      files[i] = path.join(ppp, files[i]);
-    }
-    out = JSON.stringify(files);
-    self.emit('done', out);
   });
 }
 

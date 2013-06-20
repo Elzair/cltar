@@ -70,11 +70,24 @@ exports.news = function(req, res){
       }
       options = { title: 'Charlotte Animal Rights - News', 
         active: 3, bg: bg, news: news, partial: false };
+      if (req.xhr){
+        renderer.render_partial('news', options)
+        .on('done', function(ret) { res.json(ret); });
+      }
+      else{
+        res.render('news', options);
+      }
+    })
+    .on('error', function(err){
+      news = [];
+      news[0] = 'No news yet!';
+      options = { title: 'Charlotte Animal Rights - News', 
+        active: 3, bg: bg, news: news, partial: false };
       if (req.xhr)
         renderer.render_partial('news', options)
         .on('done', function(ret) { res.json(ret); });
       else
-        res.render('news', options);
+        res.render('news', options); 
     });
   });
 };
