@@ -159,7 +159,11 @@ textarea.upload {
   background-color: #c8c8c8;
 }
 .title {
+  -webkit-animation-duration: 3s;
+  -moz-animation-duration: 3s;
   animation-duration: 3s;
+  -webkit-animation-name: slidein;
+  -moz-animation-name: slidein;
   animation-name: slidein;
 }
 @-moz-keyframes slidein {

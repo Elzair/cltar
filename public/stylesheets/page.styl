@@ -163,9 +163,19 @@ textarea.upload
 .even
   background-color rgba(200, 200, 200, 200)
 
+anim-dur(n)
+  -webkit-animation-duration n
+  -moz-animation-duration n
+  animation-duration n
+
+anim-name(n)
+  -webkit-animation-name n
+  -moz-animation-name n
+  animation-name n
+
 .title
-  animation-duration 3s
-  animation-name slidein
+  anim-dur(3s)
+  anim-name(slidein)
 
 @keyframes slidein
   from
